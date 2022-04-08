@@ -1,0 +1,94 @@
+<html>
+
+<head>
+    <title>ETS Visualisasi Informasi - Elysha Mundisari</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
+<!-- Write your comments here -->
+
+<body>
+    <div>
+        <canvas id="myChart"></canvas>
+    </div>
+
+    <script>
+        
+        const labels = [
+            '2001',
+            '2002',
+            '2003',
+            '2004',
+        ];
+
+        const data = {
+            labels: labels,
+            datasets: [
+                {
+                    label: 'Iceland',
+                    data: [814607398952626,
+                        919964390797902,
+                        713040842665137,
+                        537033153492507,
+                        ],
+                    backgroundColor: ['#66ff66','#6666ff','#ff6666','#ff99ff'],
+                    borderColor: ['white'],
+                    borderWidth: 4
+                },
+            ]
+        };
+        const config = {
+            type: 'polarArea',
+            data: data,
+            options: {
+                responsive: true,
+                scales: {
+                    r: {
+                        pointLabels: {
+                            display: true,
+                            centerPointLabels: true,
+                            font: {
+                                size: 18
+                            }
+                        }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    },
+                    title: {
+                        display: true,
+                        text: 'GPD Iceland Tahun 2001-2004'
+                    },
+                },
+                animations: {
+                    y: {
+                        easing: 'easeInOutCirc',
+                        from: (ctx) => {
+                            if (ctx.type === 'data') {
+                                if (ctx.mode === 'default' && !ctx.dropped) {
+                                    ctx.dropped = true;
+                                    return 0;
+                                }
+                            }
+                        }
+                    }
+
+                },
+            },
+};
+
+    </script>
+
+    <script>
+        const myChart = new Chart(
+            document.getElementById('myChart'),
+            config
+        );
+    </script>
+
+
+</body>
+
+</html>
